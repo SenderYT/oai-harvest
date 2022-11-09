@@ -91,7 +91,7 @@ def add_provider(cxn, args):
             return 1
     # Set up an OAI-PMH client for validating providers
     md_registry = MetadataRegistry()
-    md_registry.registerReader("oai_dc", oai_dc_reader)
+    md_registry.registerReader("lom", _reader)
     client = Client(args.url, md_registry)
     # Validate Base URL by fetching Identify
     try:
@@ -128,7 +128,7 @@ def add_provider(cxn, args):
             addlogger.info(
                 "metadataPrefix for new provider not supplied. " "using default: oai_dc"
             )
-            args.metadataPrefix = "oai_dc"
+            args.metadataPrefix = "lom"
     cxn.execute(
         "UPDATE providers SET "
         "url=?, "
